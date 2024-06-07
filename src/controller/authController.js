@@ -62,7 +62,15 @@ const register = async (req, res) => {
   return res.send(result);
 };
 
+const getListUser = async (req, res) => {
+  const result = await model.users.findAll();
+  console.log("👙 🏊‍♀️  🏄‍♀️ 🌴 🌊  ~ result:", result);
+
+  return res.send(result);
+};
+
 module.exports = {
   login,
-  register
+  register,
+  getListUser
 };
