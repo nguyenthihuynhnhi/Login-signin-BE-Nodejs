@@ -4,7 +4,6 @@ const _users = require("./users");
 function initModels(sequelize) {
   const users = _users(sequelize, DataTypes);
 
-
   return {
     users,
   };

@@ -34,6 +34,18 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   const { email, password } = req.body;
+
+  //kiểm tra xem nếu có rồi thì return không cần đăng ký mới
+  const existUserCheck = await model.users.findOne({
+    where: {
+      email: email,
+    }
+  });
+
+  if (existUserCheck !== null) {
+    return res.status(400).send("Đăng ký không thành công");
+  }
+
   //tạo độ phức tạp của mã hóa
   const salt = await bcryptjs.genSalt(10);
   // mã hóa
